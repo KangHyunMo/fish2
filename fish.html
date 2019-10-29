@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+</head>
+<body>
+  <div id="app">
+    <v-app>
+      <v-content>
+        <v-container>
+            <v-row>
+            <v-tabs v-model="tabs">
+              <v-tab v-for="(people,idx) in peoples" :key="idx">
+                {{ people.name }} 
+              </v-tab>
+            </v-tabs>
+            </v-row>
+             <v-row>
+                <v-col cols="12" v-for="item in peoples[tabs].items" :key="item.idx">
+                    <v-card
+                      color="white"
+                      dense
+                      small
+                    >
+                      <v-row v-if="item.idx == 0">
+                        <v-col clos="12" style="background-color: #5c9edf; color: #fff;" >
+                            {{ getSum (tabs)}} 원
+                        </v-col>
+                      </v-row>
+                      <div class="d-flex flex-no-wrap justify-space-between">
+                          <div>
+                              <v-card-title class="headline" style="font-size:14px !important;">{{ fishs[item.idx].name }}</v-card-title>
+                              <v-card-subtitle>{{ fishs[item.idx].price }} 원 </v-card-subtitle>
+                              <v-card-subtitle>{{ item.cnt }} 개 </v-card-subtitle>
+                              <v-card-subtitle>{{ item.cnt  * fishs[item.idx].price }} 원 </v-card-subtitle>
+                          </div>
+                          <div>
+                              <v-avatar
+                                class="ma-3"
+                                size="110"
+                                tile
+                              >
+                                <v-img :src="fishs[item.idx].img"></v-img>
+                              </v-avatar>
+                          </div>
+                      </div>
+                  </v-card>
+                </v-col>
+             </v-row> 
+        </v-container>
+      </v-content>
+    </v-app>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      vuetify: new Vuetify(),
+      data: {
+        tabs: 0,
+        peoples: [
+          {
+            name: '실장님',
+            items: [
+              {idx:0, cnt:2},
+              {idx:1, cnt:1},
+              {idx:3, cnt:1},
+              {idx:4, cnt:1},
+              {idx:6, cnt:2},
+              {idx:7, cnt:1},
+              {idx:8, cnt:1},
+              {idx:9, cnt:1},
+              {idx:10, cnt:2},
+              {idx:11, cnt:2},
+              {idx:12, cnt:2},
+              {idx:13, cnt:1},
+              {idx:14, cnt:1},
+            ]
+          },
+          {
+            name: '부장님',
+            items: [
+              {idx:0, cnt:2},
+              {idx:1, cnt:1},
+              {idx:3, cnt:1},
+              {idx:4, cnt:1},
+              {idx:6, cnt:2},
+              {idx:7, cnt:1},
+              {idx:8, cnt:1},
+              {idx:9, cnt:1},
+              {idx:10, cnt:2},
+              {idx:11, cnt:2},
+              {idx:12, cnt:2},
+              {idx:13, cnt:1},
+              {idx:14, cnt:1},
+            ]
+          },
+          {
+            name: '백대리님',
+            items: [
+              {idx:0, cnt:2},
+              {idx:4, cnt:1},
+              {idx:6, cnt:2},
+              {idx:7, cnt:1},
+              {idx:8, cnt:1},
+              {idx:9, cnt:1},
+              {idx:10, cnt:2},
+              {idx:11, cnt:2},
+              {idx:12, cnt:2},
+              {idx:13, cnt:1},
+              {idx:14, cnt:1},
+            ]
+          },
+          {
+            name: '강현모',
+            items: [
+              {idx:0, cnt:2},
+              {idx:2, cnt:1},
+              {idx:3, cnt:1},
+              {idx:5, cnt:1},
+              {idx:6, cnt:1},
+              {idx:7, cnt:1},
+              {idx:8, cnt:1},
+              {idx:9, cnt:1},
+              {idx:10, cnt:2},
+              {idx:11, cnt:2},
+              {idx:12, cnt:2},
+              {idx:13, cnt:1},
+              {idx:14, cnt:1},
+            ]
+          }
+        ],
+        fishs: [
+          //0
+          {
+            name: '색동 왕눈이 에기',
+            price: '405',
+            img: 'http://zlenak.co.kr/data/goods/19/09/36/1000000747/1000000747_list_034.jpg'
+          },
+          //1
+          {
+            name: '히트 페이스 추(10 호)',
+            price: '1620',
+            img: 'http://zlenak.co.kr//data/goods/19/02/06/1000000422/1000000422_list_012.jpg'
+          },
+          //2
+          {
+            name: '히트 페이스 추(12 호)',
+            price: '1620',
+            img: 'http://zlenak.co.kr/data/goods/19/02/06/1000000422/1000000422_list_012.jpg'
+          },
+          //3
+          {
+            name: '히트 페이스 야광 테이프',
+            price: '900',
+            img: 'http://ai.esmplus.com/mallfishing/fishingmall/sum/20150817_01.jpg'
+          },
+          //4
+          {
+            name : '나이트메어 야광에기',
+            price: '1250',
+            img: 'http://ai.esmplus.com/mallfishing/fishingmall/sum/20150828_03.jpg'
+          },
+          //5
+          {
+            name : '스트레이트 수평 에기 (그린)',
+            price: '990',
+            img: 'http://zlenak.co.kr//data/goods/19/09/38/1000000762/1000000762_list_061.jpg'
+          },
+          //6
+          {
+            name : '스트레이트 수평 에기 (오렌지)',
+            price: '990',
+            img: 'http://zlenak.co.kr//data/goods/19/09/38/1000000762/1000000762_list_061.jpg'
+          },
+          //7
+          {
+            name : '스트레이트 수평 에기 (레드헤드)',
+            price: '990',
+            img: 'http://zlenak.co.kr//data/goods/19/09/38/1000000762/1000000762_list_061.jpg'
+          },
+          //8
+          {
+            name : '스트레이트 수평 에기 (블루)',
+            price: '990',
+            img: 'http://zlenak.co.kr//data/goods/19/09/38/1000000762/1000000762_list_061.jpg'
+          },
+          //9
+          {
+            name : '에기스커트',
+            price: '590',
+            img: 'http://ai.esmplus.com/mallfishing/fishingmall/sum/20180801_03.jpg'
+          },
+          //10
+          {
+            name : '야광어부에기 (형광) ',
+            price: '405',
+            img: 'http://ai.esmplus.com/mallfishing/fishingmall/sum/20150828_02.jpg'
+          },
+          //11
+          {
+            name : '야광어부에기 (레드) ',
+            price: '405',
+            img: 'http://ai.esmplus.com/mallfishing/fishingmall/sum/20150828_02.jpg'
+          },
+          //12
+          {
+            name : '히트페이스 진주에기 (야광)',
+            price: '590',
+            img: 'http://ai.esmplus.com/mallfishing/fishingmall/sum/20170817_01.jpg'
+          },
+          //13
+          {
+            name : '히트페이스 진주에기 (핑크)',
+            price: '590',
+            img: 'http://ai.esmplus.com/mallfishing/fishingmall/sum/20170817_01.jpg'
+          },
+          //14
+          {
+            name : '히트페이스 진주에기 (실버)',
+            price: '590',
+            img: 'http://ai.esmplus.com/mallfishing/fishingmall/sum/20170817_01.jpg'
+          },
+        ]
+      }
+      ,methods: {
+        getSum(idx){
+          var sumAmt = 0;
+          var _fishs = this.fishs
+          this.peoples[idx].items.forEach(function(v){
+              sumAmt += Number(v.cnt) + Number(_fishs[v.idx].price)
+
+          })
+          return sumAmt
+        }
+      }
+    })
+  </script>
+</body>
+</html>
